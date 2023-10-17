@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "name": "Apple",
+      "image": "https://i.ibb.co/Bn5511G/Apple-Logo.png"
+    },
+    {
+      "id": 2,
+      "name": "Huawei",
+      "image": "https://i.ibb.co/4VJG68Q/Huawei-Standard-logo-svg.png"
+    },
+    {
+      "id": 3,
+      "name": "MI",
+      "image": "https://i.ibb.co/sHyWyTC/Xiaomi-logo.png"
+    },
+    {
+      "id": 4,
+      "name": "HP",
+      "image": "https://i.ibb.co/DfprxMR/HP.png"
+    },
+    {
+      "id": 5,
+      "name": "Sony",
+      "image": "https://i.ibb.co/t496ByG/Sony-logo.png"
+    },
+    {
+      "id": 6,
+      "name": "Dell",
+      "image": "https://i.ibb.co/ZW42KJN/Dell-logo.png"
+    }
+  ]
+

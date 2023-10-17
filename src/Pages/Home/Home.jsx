@@ -1,7 +1,9 @@
+import { useLoaderData } from "react-router-dom";
 import Banner1 from "../../Components/Banner/Banner1";
 import Banner2 from "../../Components/Banner/Banner2";
 
 const Home = () => {
+  const brands = useLoaderData();
   return (
     <div>
       <div className="carousel lg:h-[800px] w-full">
@@ -27,6 +29,19 @@ const Home = () => {
             </a>
           </div>
         </div>
+      </div>
+      <div className="flex gap-5 container mx-auto">
+        {brands.map((brand) => (
+          <div
+            className="shadow-lg p-5 w-full flex-col justify-center"
+            key={brand.id}
+          >
+            <div>
+              <img className="w-24 flex justify-center" src={brand.image}></img>
+            </div>
+            <p className="">{brand.name}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
