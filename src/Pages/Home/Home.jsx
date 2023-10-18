@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Banner1 from "../../Components/Banner/Banner1";
 import Banner2 from "../../Components/Banner/Banner2";
 
@@ -30,17 +30,19 @@ const Home = () => {
           </div>
         </div>
       </div>
+
       <div className="flex gap-5 container mx-auto">
         {brands.map((brand) => (
-          <div
-            className="shadow-lg p-5 w-full flex-col justify-center"
-            key={brand.id}
-          >
-            <div>
-              <img className="w-24 flex justify-center" src={brand.image}></img>
+          <Link to={`/products/${brand.name}`} key={brand.id}>
+            <div
+              className="shadow-lg p-5flex-col justify-center w-full p-4"
+            >
+              <div className="flex justify-center">
+                <img className="h-20" src={brand.image}></img>
+              </div>
+              <p className="text-center text-2xl font-bold">{brand.name}</p>
             </div>
-            <p className="">{brand.name}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
