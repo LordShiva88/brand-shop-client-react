@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const MyCart = () => {
   const data = useLoaderData();
-  const [items, setItem] = useState(data)
+  const [items, setItem] = useState(data);
 
   return (
     <div className=" py-20">
@@ -12,14 +12,16 @@ const MyCart = () => {
       <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
         <div className="rounded-lg md:w-2/3">
           {items.map((item) => (
-            <Cart key={item._id}
-            items={items}
-            setItem={setItem}
-             item={item}></Cart>
+            <Cart
+              key={item._id}
+              items={items}
+              setItem={setItem}
+              item={item}
+            ></Cart>
           ))}
         </div>
 
-        <div className="border p-2 rounded-sm">
+        <div className="border p-5 h-[600px] rounded-sm">
           <h1 className="font-semibold text-2xl border-b pb-8">
             Order Summary
           </h1>

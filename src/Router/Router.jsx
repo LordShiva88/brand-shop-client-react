@@ -12,53 +12,55 @@ import Update from "../Components/Update/Update";
 
 const router = createBrowserRouter([
   {
-    path:'/',
+    path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: <Error></Error>,
-    children:[
+    children: [
       {
-        path: '/',
+        path: "/",
         element: <Home></Home>,
         loader: () => fetch("/brand.json"),
       },
       {
-        path: '/addProduct',
+        path: "/addProduct",
         element: <AddProduct></AddProduct>,
       },
       {
-        path: '/update/:id',
+        path: "/update/:id",
         element: <Update></Update>,
-        loader: ({params})=>fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/details/${params.id}`),
       },
       {
-        path: '/cart',
+        path: "/cart",
         element: <MyCart></MyCart>,
-        loader: ()=> fetch('http://localhost:5000/storedItem')
+        loader: () => fetch("http://localhost:5000/storedItem"),
       },
       {
-        path: '/login',
-        element: <Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path: '/register',
-        element: <Register></Register>
+        path: "/register",
+        element: <Register></Register>,
       },
       {
-        path: '/details/:id',
+        path: "/details/:id",
         element: <Details></Details>,
-        loader: ({params})=>fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/details/${params.id}`),
       },
       {
-        path: '/products/:id',
+        path: "/products/:id",
         element: <Products></Products>,
-        loader: ({params})=>fetch(`http://localhost:5000/products/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/products/${params.id}`),
       },
-    ]
-  }
+    ],
+  },
 ]);
 
 export default router;
-
 
 // https://brand-shop-68273.web.app/details/652f87782755bb4ef7789e48
 

@@ -1,14 +1,18 @@
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Update = () => {
-  const data = useLoaderData()
-  const {name,
+  const data = useLoaderData();
+  const {
+    name,
     brand,
     category,
     price,
     short_description,
     image,
-    rating,} = data;
+    rating,
+    _id,
+  } = data;
 
   const handleAddProduct = (event) => {
     event.preventDefault();
@@ -20,8 +24,7 @@ const Update = () => {
     const description = form.description.value;
     const rating = form.rating.value;
     const photo = form.photo.value;
-
-    const newProduct = {
+    const updateProduct = {
       name,
       brand,
       category,
@@ -30,9 +33,26 @@ const Update = () => {
       photo,
       rating,
     };
-    console.log(newProduct);
-    
+    console.log(updateProduct);
 
+    fetch(`http://localhost:5000/products/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          return Swal.fire({
+            icon: "success",
+            title: "Updated Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   return (

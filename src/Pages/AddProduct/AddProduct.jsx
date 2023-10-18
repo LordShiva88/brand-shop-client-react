@@ -20,7 +20,6 @@ const AddProduct = () => {
       rating,
     };
     console.log(newProduct);
-    
   };
 
   return (

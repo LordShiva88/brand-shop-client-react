@@ -34,9 +34,7 @@ const Home = () => {
       <div className="flex gap-5 container mx-auto">
         {brands.map((brand) => (
           <Link to={`/products/${brand.name}`} key={brand.id}>
-            <div
-              className="shadow-lg p-5flex-col justify-center w-full p-4"
-            >
+            <div className="shadow-lg p-5flex-col justify-center w-full p-4">
               <div className="flex justify-center">
                 <img className="h-20" src={brand.image}></img>
               </div>
