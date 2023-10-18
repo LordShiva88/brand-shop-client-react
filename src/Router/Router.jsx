@@ -8,6 +8,7 @@ import Login from "../Auth/Login/Login";
 import Register from "../Auth/Register/Register";
 import Products from "../Pages/Products/Products";
 import Details from "../Components/Details/Details";
+import Update from "../Components/Update/Update";
 
 const router = createBrowserRouter([
   {
@@ -25,8 +26,14 @@ const router = createBrowserRouter([
         element: <AddProduct></AddProduct>,
       },
       {
+        path: '/update/:id',
+        element: <Update></Update>,
+        loader: ({params})=>fetch(`http://localhost:5000/details/${params.id}`)
+      },
+      {
         path: '/cart',
-        element: <MyCart></MyCart>
+        element: <MyCart></MyCart>,
+        loader: ()=> fetch('http://localhost:5000/storedItem')
       },
       {
         path: '/login',
@@ -51,3 +58,8 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+
+
+// https://brand-shop-68273.web.app/details/652f87782755bb4ef7789e48
+
+// https://shop-server-site-36ob4qzsf-liton-naths-projects.vercel.app/products

@@ -3,6 +3,19 @@ import { useLoaderData } from "react-router-dom";
 const Details = () => {
   const product = useLoaderData();
 
+  const handleAddItem = (product) => {
+    console.log(product);
+    fetch("http://localhost:5000/storedItem", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product)
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   return (
     <div>
       <div className="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
@@ -22,7 +35,9 @@ const Details = () => {
           <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
             {product.title}
           </p>
-          <button className="btn">add to cart</button>
+          <button onClick={() => handleAddItem(product)} className="btn">
+            add to cart
+          </button>
         </div>
       </div>
     </div>

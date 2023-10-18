@@ -1,4 +1,15 @@
-const AddProduct = () => {
+import { useLoaderData } from "react-router-dom";
+
+const Update = () => {
+  const data = useLoaderData()
+  const {name,
+    brand,
+    category,
+    price,
+    short_description,
+    image,
+    rating,} = data;
+
   const handleAddProduct = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -21,11 +32,12 @@ const AddProduct = () => {
     };
     console.log(newProduct);
     
+
   };
 
   return (
     <div className="md:w-1/2 w-full mx-auto mt-20">
-      <h2 className="font-bold text-3xl text-center">Added Product</h2>
+      <h2 className="font-bold text-3xl text-center">Update Product</h2>
       <form onSubmit={handleAddProduct} className="card-body">
         <div className="md:flex gap-4">
           <div className="form-control w-full">
@@ -35,6 +47,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="name"
+              defaultValue={name}
               placeholder="Enter coffee name"
               className="input input-bordered"
               required
@@ -47,6 +60,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="brand"
+              defaultValue={brand}
               placeholder="Brand Name"
               className="input input-bordered"
               required
@@ -61,6 +75,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="category"
+              defaultValue={category}
               placeholder="Type"
               className="input input-bordered"
               required
@@ -73,6 +88,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="price"
+              defaultValue={price}
               placeholder="Enter coffee taste"
               className="input input-bordered"
               required
@@ -87,6 +103,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="description"
+              defaultValue={short_description}
               placeholder="Enter coffee category"
               className="input input-bordered"
               required
@@ -99,6 +116,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="rating"
+              defaultValue={rating}
               placeholder="Enter coffee details"
               className="input input-bordered"
               required
@@ -113,6 +131,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="photo"
+            defaultValue={image}
             placeholder="Enter photo URL"
             className="input input-bordered"
             required
@@ -128,4 +147,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default Update;
