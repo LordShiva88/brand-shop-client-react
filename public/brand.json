@@ -1,33 +1,39 @@
 [
-    {
+  {
       "id": 1,
       "name": "Apple",
-      "image": "https://i.ibb.co/GdPDJxj/1685279753620-removebg-preview.png"
-    },
-    {
+      "title": "Live like a luxury",
+      "image": "https://i.ibb.co/3rBnn60/747.png"
+  },
+  {
       "id": 2,
       "name": "Huawei",
+      "title": "Innovate Possibilities",
       "image": "https://i.ibb.co/4VJG68Q/Huawei-Standard-logo-svg.png"
-    },
-    {
+  },
+  {
       "id": 3,
       "name": "MI",
+      "title": "Innovation For Everyone",
       "image": "https://i.ibb.co/sHyWyTC/Xiaomi-logo.png"
-    },
-    {
+  },
+  {
       "id": 4,
       "name": "HP",
+      "title": "Invent Progress",
       "image": "https://i.ibb.co/DfprxMR/HP.png"
-    },
-    {
+  },
+  {
       "id": 5,
       "name": "Lenovo",
-      "image": "https://i.ibb.co/hDdJRDZ/Lenovo-2015-svg.png"
-    },
-    {
+      "title": "Different is Better",
+      "image": "https://i.ibb.co/0Kv5MVw/id9-L7-W04ae.png"
+  },
+  {
       "id": 6,
       "name": "Dell",
+      "title": "Purely You",
       "image": "https://i.ibb.co/ZW42KJN/Dell-logo.png"
-    }
-  ]
+  }
+]
 

@@ -1,14 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SocialLogIn from "../SocialLogin/SocialLogin";
+import { authContext } from "../../AuthProvider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
+  const { loginUser } = useContext(authContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLoginUser = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password);
+
+    loginUser(email, password)
+      .then((result) => {
+        console.log(result);
+        toast.success("Successfully Log In!!");
+        // Navigate After Login
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+      });
+  };
+
   return (
     <div className="md:w-1/2 mx-auto w-full lg:w-1/3">
-      <form className="my-20 border p-10 ">
+      <form onSubmit={handleLoginUser} className="my-20 border p-10 ">
         <h2 className="text-2xl font-bold mb-5">Login Your Account</h2>
 
         <div className="relative z-0 w-full mb-6 group">
@@ -81,6 +107,7 @@ const Login = () => {
           <SocialLogIn></SocialLogIn>
         </div>
       </form>
+      <Toaster />
     </div>
   );
 };

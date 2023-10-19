@@ -1,8 +1,26 @@
 import { Link, NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import logo from "../../assets/logo-1.png";
+import { useContext } from "react";
+import { authContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
+import usrIcon from "../../assets/user.png";
 
 const Navbar = () => {
+  const { logOut, user } = useContext(authContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then((result) => {
+        console.log(result);
+        toast.success("Successfully Log Out!!");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+      });
+  };
+
   const navLink = (
     <>
       <li>
@@ -55,36 +73,39 @@ const Navbar = () => {
           <ul className="px-1 flex gap-10">{navLink}</ul>
         </div>
 
-        <div className="navbar-end">
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                {/* <div className="w-10 rounded-full border">
-                {currentUser ? (
-                  <img src={currentUser?.photoURL} />
-                ) : (
-                  <img src={userIcon} />
-                )}
-              </div> */}
-              </div>
-            </label>
+        <div className="navbar-end flex items-center">
+          <label tabIndex={0} className="btn btn-ghost avatar">
+            <div className="">
+              {user ? (
+                <div className="flex gap-4 items-center">
+                  <p>{user?.displayName}</p>
+                  <div className="w-10 rounded-full border">
+                    <img src={user?.photoURL} />
+                  </div>
+                </div>
+              ) : (
+                <div className="w-10 rounded-full border">
+                    <img src={usrIcon} />
+                  </div>
+              )}
+            </div>
+          </label>
+
+          <div className="ml-5">
+            {user ? (
+              <button
+                onClick={handleLogOut}
+                className="btn btn-error btn-outline"
+                to={"/login"}
+              >
+                Logout
+              </button>
+            ) : (
+              <Link className="btn btn-error btn-outline" to={"/login"}>
+                Login
+              </Link>
+            )}
           </div>
-          {/* <div className="ml-5">
-          {currentUser ? (
-            <button
-              onClick={handleSignOut}
-              className="btn btn-error btn-outline"
-              to={"/login"}
-            >
-              Logout
-            </button>
-          ) : (
-            <Link className="btn btn-error btn-outline" to={"/login"}>
-              Login
-            </Link>
-          )}
-        </div> */}
-          <Link to={"/login"}>Login</Link>
         </div>
       </div>
     </div>

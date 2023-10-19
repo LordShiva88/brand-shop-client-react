@@ -1,9 +1,16 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Banner1 from "../../Components/Banner/Banner1";
 import Banner2 from "../../Components/Banner/Banner2";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Home = () => {
   const brands = useLoaderData();
+  useEffect(() => {
+    AOS.init({ duration: 3000 });
+  }, []);
+
   return (
     <div>
       <div className="carousel lg:h-[800px] w-full">
@@ -31,18 +38,40 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex gap-5 container mx-auto">
-        {brands.map((brand) => (
-          <Link to={`/products/${brand.name}`} key={brand.id}>
-            <div className="shadow-lg p-5flex-col justify-center w-full p-4">
-              <div className="flex justify-center">
-                <img className="h-20" src={brand.image}></img>
+      <section className="p-6 my-6 dark:bg-gray-800 dark:text-gray-100">
+        <div className="space-y-2 text-center mb-10">
+          <h2 className="text-3xl font-bold">
+            Find Your
+            <span className="text-[#eb347a]"> Brand</span>
+          </h2>
+          <p className="text-gray-500"> Find Your Signature Brand Today.</p>
+          <div className="flex justify-center">
+            <hr className="border w-32 h-1 bg-[#eb347a] "></hr>
+          </div>
+        </div>
+        <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-3">
+          {brands.map((brand, ide) => (
+            <Link
+              to={`/products/${brand.name}`}
+              key={ide}
+              className="flex p-4 space-x-4 rounded-lg md:space-x-6 shadow-sm"
+              data-aos="zoom-in"
+            >
+              <div className="flex justify-center p-2 rounded-lg sm:p-4 dark:bg-violet-400">
+                <img src={brand.image} alt="" className="md:w-24 w-20" />
               </div>
-              <p className="text-center text-2xl font-bold">{brand.name}</p>
-            </div>
-          </Link>
-        ))}
-      </div>
+              <div className="flex-col flex justify-center ">
+                <p className="md:text-3xl text-2xl font-semibold">
+                  {brand.name}
+                </p>
+                <p className="">{brand.title}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <div className="flex gap-5 container mx-auto" data-aos="fade-up"></div>
     </div>
   );
 };

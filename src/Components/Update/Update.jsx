@@ -23,14 +23,14 @@ const Update = () => {
     const price = form.price.value;
     const description = form.description.value;
     const rating = form.rating.value;
-    const photo = form.photo.value;
+    const image = form.image.value;
     const updateProduct = {
       name,
       brand,
       category,
       price,
       description,
-      photo,
+      image,
       rating,
     };
     console.log(updateProduct);
@@ -150,7 +150,7 @@ const Update = () => {
           </label>
           <input
             type="text"
-            name="photo"
+            name="image"
             defaultValue={image}
             placeholder="Enter photo URL"
             className="input input-bordered"

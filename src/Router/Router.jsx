@@ -9,6 +9,7 @@ import Register from "../Auth/Register/Register";
 import Products from "../Pages/Products/Products";
 import Details from "../Components/Details/Details";
 import Update from "../Components/Update/Update";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,18 +24,26 @@ const router = createBrowserRouter([
       },
       {
         path: "/addProduct",
-        element: <AddProduct></AddProduct>,
-      },
-      {
-        path: "/update/:id",
-        element: <Update></Update>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/details/${params.id}`),
+        element: <PrivateRoute>
+          <AddProduct></AddProduct>
+        </PrivateRoute>,
       },
       {
         path: "/cart",
-        element: <MyCart></MyCart>,
+        element: (
+          <PrivateRoute>
+            <MyCart></MyCart>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/storedItem"),
+      },
+      {
+        path: "/update/:id",
+        element: <PrivateRoute>
+          <Update></Update>
+        </PrivateRoute>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/details/${params.id}`),
       },
       {
         path: "/login",
@@ -46,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <Details></Details>,
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/details/${params.id}`),
       },

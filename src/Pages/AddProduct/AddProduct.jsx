@@ -34,7 +34,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="name"
-              placeholder="Enter coffee name"
+              placeholder="Enter name"
               className="input input-bordered"
               required
             />
@@ -72,7 +72,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="price"
-              placeholder="Enter coffee taste"
+              placeholder="Enter Price"
               className="input input-bordered"
               required
             />
@@ -86,7 +86,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="description"
-              placeholder="Enter coffee category"
+              placeholder="Enter Short description"
               className="input input-bordered"
               required
             />
@@ -98,7 +98,7 @@ const AddProduct = () => {
             <input
               type="text"
               name="rating"
-              placeholder="Enter coffee details"
+              placeholder="Enter Rating"
               className="input input-bordered"
               required
             />
