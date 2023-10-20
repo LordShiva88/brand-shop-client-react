@@ -1,3 +1,5 @@
+import toast, { Toaster } from "react-hot-toast";
+
 const AddProduct = () => {
   const handleAddProduct = (event) => {
     event.preventDefault();
@@ -19,7 +21,19 @@ const AddProduct = () => {
       photo,
       rating,
     };
-    console.log(newProduct);
+
+    fetch('https://shop-server-site-nw22c7qp6-liton-naths-projects.vercel.app/products', {
+      method: 'POST',
+      headers:{
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newProduct)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      toast.success('Successfully Added')
+    })
   };
 
   return (
@@ -123,6 +137,7 @@ const AddProduct = () => {
           className="bg-[#D2B48C] p-2 rounded-md text-[#331A15] cursor-pointer mt-5"
         />
       </form>
+      <Toaster/>
     </div>
   );
 };
