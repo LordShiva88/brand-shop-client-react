@@ -4,6 +4,9 @@ import Banner2 from "../../Components/Banner/Banner2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import Testimonial from "../../Components/Testimonial/Testimonial";
+import img from "../../assets/banner-3.png";
+import Features from "../../Components/Features/Features";
 
 const Home = () => {
   const brands = useLoaderData();
@@ -13,30 +16,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="carousel lg:h-[800px] w-full">
-        <div id="slide1" className="carousel-item relative w-full">
-          <Banner1></Banner1>
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide4" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide2" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide2" className="carousel-item relative w-full">
-          <Banner2></Banner2>
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide1" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide3" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-      </div>
+      <Banner1></Banner1>
 
       <section className="p-6 my-6 dark:bg-gray-800 dark:text-gray-100">
         <div className="space-y-2 text-center mb-10">
@@ -71,7 +51,26 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="flex gap-5 container mx-auto" data-aos="fade-up"></div>
+      <div className="space-y-2 text-center mb-10">
+        <h2 className="text-3xl font-bold">
+          Our
+          <span className="text-[#eb347a]"> Features</span>
+        </h2>
+        <p className="text-gray-500">
+          Empowering Your Journey: Discover Our Features, Transform Your
+          Experience
+        </p>
+        <div className="flex justify-center">
+          <hr className="border w-32 h-1 bg-[#eb347a] "></hr>
+        </div>
+      </div>
+      <Features></Features>
+
+      <div className="my-20">
+        <img src={img} alt="" />
+      </div>
+
+      <Testimonial></Testimonial>
     </div>
   );
 };

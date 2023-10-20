@@ -9,7 +9,7 @@ const CardDetails = ({ product }) => {
   const afterDiscount = (price - discountPrice).toFixed(2);
 
   return (
-    <div data-aos="zoom-in" className="border shadow-xl">
+    <div className="border shadow-xl transition duration-300 ease-in-out transform hover:scale-105">
       <div className="relative">
         {discount === 0 ? (
           ""
@@ -60,14 +60,14 @@ const CardDetails = ({ product }) => {
       <hr />
       <div className="flex justify-between px-6 py-5">
         <Link to={`/details/${_id}`}>
-          <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase px-4">
-            Details
-          </button>
+        <button className="bg-white text-indigo-600 hover:text-indigo-700 font-semibold py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+          Details
+        </button>
         </Link>
         <Link to={`/update/${_id}`}>
-          <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase px-4">
-            Update
-          </button>
+        <button className="bg-white text-indigo-600 hover:text-indigo-700 font-semibold py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+          Update
+        </button>
         </Link>
       </div>
     </div>

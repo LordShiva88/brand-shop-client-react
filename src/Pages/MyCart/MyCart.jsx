@@ -1,24 +1,41 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Cart from "../../Components/Cart/Cart";
 import { useState } from "react";
+import { useEffect } from "react";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const MyCart = () => {
   const data = useLoaderData();
-  const [items, setItem] = useState(data);
+  const [filterCartItem, setFilterCartItem] = useState([]);
+  const itemId = JSON.parse(localStorage.getItem("cart"));
+  const [ls, setLs] = useState(itemId);
+
+  useEffect(() => {
+    const filterCart = data.filter((item) => ls.includes(item._id));
+    setFilterCartItem(filterCart);
+  }, [data, ls]);
 
   return (
     <div className=" py-20">
       <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
       <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
         <div className="rounded-lg md:w-2/3">
-          {items.map((item) => (
-            <Cart
-              key={item._id}
-              items={items}
-              setItem={setItem}
-              item={item}
-            ></Cart>
-          ))}
+          {filterCartItem.length === 0 ? (
+            <div className="flex justify-center items-center mt-48">
+              <div className="flex-col space-y-2">
+                <h1 className="text-2xl">Oops! Your Cart is Empty</h1>
+                <p>Add some items to your cart to.</p>
+                <Link to={"/"} className="text-red-500 flex items-center gap-3">
+                  <FaArrowAltCircleLeft></FaArrowAltCircleLeft> Continue
+                  shopping
+                </Link>
+              </div>
+            </div>
+          ) : (
+            filterCartItem.map((item) => (
+              <Cart key={item._id} setLs={setLs} item={item}></Cart>
+            ))
+          )}
         </div>
 
         <div className="border p-5 h-[600px] rounded-sm">
@@ -27,7 +44,7 @@ const MyCart = () => {
           </h1>
           <div className="flex justify-between mt-10 mb-5">
             <span className="font-semibold text-sm uppercase">
-              Items {items.length}
+              Items {data.length}
             </span>
             <span className="font-semibold text-sm">590$</span>
           </div>

@@ -2,11 +2,10 @@ import { AiOutlineDelete } from "react-icons/ai";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 
-const Cart = ({ item, items, setItem }) => {
+const Cart = ({ item, setLs }) => {
   const { name, image, brand, price, title, _id } = item;
 
-  const handleDelete = (id) => {
-    console.log(id);
+  const removeFromCart = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -17,21 +16,47 @@ const Cart = ({ item, items, setItem }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/storedItem/${id}`, {
-          method: "Delete",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            const remaining = items.filter((item) => item._id !== id);
-            setItem(remaining);
-            if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            }
-          });
+        const lsItem = JSON.parse(localStorage.getItem("cart")) || [];
+        const updateCart = lsItem.filter((item) => item !== id);
+        console.log(updateCart);
+        localStorage.setItem("cart", JSON.stringify(updateCart));
+        setLs(updateCart);
+
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
     });
   };
+
+
+  // Delete Data form Mongo Bd
+  // const handleDelete = (id) => {
+  //   console.log(id);
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       fetch(`http://localhost:5000/storedItem/${id}`, {
+  //         method: "Delete",
+  //       })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           console.log(data);
+  //           const remaining = items.filter((item) => item._id !== id);
+  //           setItem(remaining);
+  //           if (data.deletedCount > 0) {
+  //             Swal.fire("Deleted!", "Your file has been deleted.", "success");
+  //           }
+  //         });
+  //     }
+  //   });
+  // };
+
   return (
     <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
       <div className="flex justify-center md:w-1/4">
@@ -57,7 +82,7 @@ const Cart = ({ item, items, setItem }) => {
           </div>
           <div className="flex items-center space-x-4">
             <p className="text-sm">{price} $</p>
-            <button onClick={() => handleDelete(_id)}>
+            <button onClick={() => removeFromCart(_id)}>
               <AiOutlineDelete className="hover:text-red-500 text-2xl"></AiOutlineDelete>
             </button>
           </div>
@@ -69,7 +94,6 @@ const Cart = ({ item, items, setItem }) => {
 
 Cart.propTypes = {
   item: PropTypes.object,
-  items: PropTypes.array,
-  setItem: PropTypes.func,
+  setLs: PropTypes.func,
 };
 export default Cart;

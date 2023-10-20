@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Free Shipping",
+    "description": "Enjoy free shipping on all orders within the country. No minimum purchase required.",
+    "additionalFeatures": [
+      "Fast delivery",
+      "Reliable shipping service",
+      "Track your orders online"
+    ]
+  },
+  {
+    "title": "Secure Payments",
+    "description": "Make secure payments using various payment methods including credit/debit cards and online wallets.",
+    "additionalFeatures": [
+      "Multiple payment options",
+      "Encrypted transactions",
+      "Fraud protection"
+    ]
+  },
+  {
+    "title": "24/7 Customer Support",
+    "description": "Get round-the-clock customer support from our dedicated team. We're here to assist you anytime.",
+    "additionalFeatures": [
+      "Responsive customer service",
+      "Knowledgeable support agents",
+      "Helpful FAQs section"
+    ]
+  },
+  {
+    "title": "Easy Returns",
+    "description": "Hassle-free returns and exchanges. If you're not satisfied, we'll make it right.",
+    "additionalFeatures": [
+      "Simple return process",
+      "No restocking fees",
+      "Quick refund or exchange"
+    ]
+  },
+  {
+    "title": "Quality Guarantee",
+    "description": "We guarantee the quality of our products. If you receive a defective item, we'll replace it at no extra cost.",
+    "additionalFeatures": [
+      "High-quality products",
+      "Rigorous quality checks",
+      "Satisfaction guaranteed"
+    ]
+  },
+  {
+    "title": "Exclusive Discounts",
+    "description": "Enjoy exclusive discounts and special offers as a loyal customer. Save big on your favorite items.",
+    "additionalFeatures": [
+      "Regular promotions",
+      "Member-only discounts",
+      "Early access to sales"
+    ]
+  }
+]

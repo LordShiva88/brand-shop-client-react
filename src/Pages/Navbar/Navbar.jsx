@@ -51,7 +51,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="lg:px-12 md:px-6 navbar bg-gray-800 text-gray-50 nav">
+    <div className="lg:px-12 md:px-6 navbar bg-base-200 nav">
       <div className="container mx-auto">
         <div className="hidden md:flex ">
           <img src={logo} className="h-20" />
@@ -74,22 +74,20 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end flex items-center">
-          <label tabIndex={0} className="btn btn-ghost avatar">
-            <div className="">
-              {user ? (
-                <div className="flex gap-4 items-center">
-                  <p>{user?.displayName}</p>
-                  <div className="w-10 rounded-full border">
-                    <img src={user?.photoURL} />
-                  </div>
+          <div className="">
+            {user ? (
+              <div className="flex gap-4 items-center">
+                <p>{user?.displayName}</p>
+                <div className="w-10 border avatar rounded-full">
+                  <img src={user?.photoURL} />
                 </div>
-              ) : (
-                <div className="w-10 rounded-full border">
-                    <img src={usrIcon} />
-                  </div>
-              )}
-            </div>
-          </label>
+              </div>
+            ) : (
+              <div className="w-10 rounded-full border">
+                <img src={usrIcon} />
+              </div>
+            )}
+          </div>
 
           <div className="ml-5">
             {user ? (

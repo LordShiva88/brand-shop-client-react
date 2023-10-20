@@ -1,35 +1,20 @@
+import toast, { Toaster } from "react-hot-toast";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
-import Swal from "sweetalert2";
-
 const Details = () => {
   const product = useLoaderData();
-  const handleAddItem = (product) => {
-    fetch("http://localhost:5000/storedItem", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(product),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire({
-            icon: "success",
-            title: "Added Successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Item Already Added",
-          });
-        }
-      });
+
+  const handleAddToCart = (id) => {
+    const existItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const isProductInCart = existItems.find((item) => item === id);
+    if (!isProductInCart) {
+      const updatedCartItems = [...existItems, id];
+      localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+      toast.success("Added Successfully");
+    } else {
+      toast.error("Product is already in the cart!");
+    }
   };
 
   return (
@@ -39,11 +24,7 @@ const Details = () => {
           <div className="w-full px-4 md:w-1/2 ">
             <div className="sticky top-0 z-50 overflow-hidden ">
               <div className="relative mb-2 lg:mb-10 lg:h-2/4 ">
-                <img
-                  src={product.image}
-                  alt=""
-                  className="object-cover w-full lg:h-full "
-                />
+                <img src={product.image} alt="" />
               </div>
             </div>
           </div>
@@ -106,10 +87,10 @@ const Details = () => {
               <div className="flex flex-wrap items-center -mx-4 ">
                 <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                   <button
-                    onClick={() => handleAddItem(product)}
+                    onClick={() => handleAddToCart(product._id)}
                     className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
                   >
-                    Add to Cart
+                    Add To cart
                   </button>
                 </div>
               </div>
@@ -117,6 +98,7 @@ const Details = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </section>
   );
 };
