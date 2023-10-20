@@ -1,26 +1,18 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Cart from "../../Components/Cart/Cart";
 import { useState } from "react";
-import { useEffect } from "react";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const MyCart = () => {
   const data = useLoaderData();
-  const [filterCartItem, setFilterCartItem] = useState([]);
-  const itemId = JSON.parse(localStorage.getItem("cart"));
-  const [ls, setLs] = useState(itemId);
-
-  useEffect(() => {
-    const filterCart = data.filter((item) => ls.includes(item._id));
-    setFilterCartItem(filterCart);
-  }, [data, ls]);
+  const [cartItems, setCartItems] = useState(data)
 
   return (
     <div className=" py-20">
       <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
       <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
         <div className="rounded-lg md:w-2/3">
-          {filterCartItem.length === 0 ? (
+          {cartItems.length === 0 ? (
             <div className="flex justify-center items-center mt-48">
               <div className="flex-col space-y-2">
                 <h1 className="text-2xl">Oops! Your Cart is Empty</h1>
@@ -32,8 +24,11 @@ const MyCart = () => {
               </div>
             </div>
           ) : (
-            filterCartItem.map((item) => (
-              <Cart key={item._id} setLs={setLs} item={item}></Cart>
+            cartItems.map((item) => (
+              <Cart key={item._id}
+              items={cartItems}
+              setCartItems={setCartItems}
+               item={item}></Cart>
             ))
           )}
         </div>

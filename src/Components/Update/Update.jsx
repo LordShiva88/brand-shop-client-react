@@ -159,7 +159,7 @@ const Update = () => {
         </div>
         <input
           type="submit"
-          value="Added Products"
+          value="Update Products"
           className="bg-[#D2B48C] p-2 rounded-md text-[#331A15] cursor-pointer mt-5"
         />
       </form>

@@ -4,18 +4,22 @@ import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
 const Details = () => {
   const product = useLoaderData();
-
-  const handleAddToCart = (id) => {
-    const existItems = JSON.parse(localStorage.getItem("cart")) || [];
-    const isProductInCart = existItems.find((item) => item === id);
-    if (!isProductInCart) {
-      const updatedCartItems = [...existItems, id];
-      localStorage.setItem("cart", JSON.stringify(updatedCartItems));
-      toast.success("Added Successfully");
-    } else {
-      toast.error("Product is already in the cart!");
-    }
-  };
+  
+  const handleAddToCart = (product) =>{
+    console.log(product)
+    fetch('https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/storedItem', {
+      method: 'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(product)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      toast.success('Added Successfully')
+    })
+  }
 
   return (
     <section className="overflow-hidden md:p-0 p-4 bg-white py-11 dark:bg-gray-800">
@@ -23,7 +27,7 @@ const Details = () => {
         <div className="flex flex-wrap -mx-4">
           <div className="w-full px-4 md:w-1/2 ">
             <div className="sticky top-0 z-50 overflow-hidden ">
-              <div className="relative mb-2 lg:mb-10 lg:h-2/4 ">
+              <div className="relative mb-2 lg:mb-10 lg:h-2/4 flex justify-center items-center">
                 <img src={product.image} alt="" />
               </div>
             </div>
@@ -69,7 +73,7 @@ const Details = () => {
                   </div>
                   <div className="">
                     <p className="max-w-md mb-2 text-gray-700 dark:text-gray-400">
-                      {product.features.map((fea, idx) => (
+                      {product.specifications.map((fea, idx) => (
                         <li key={idx}>{fea}</li>
                       ))}
                     </p>
@@ -80,14 +84,14 @@ const Details = () => {
                   <span>Price: ${product.price}</span>
                 </p>
                 <p className="text-green-600 dark:text-green-300 ">
-                  7 in stock
+                  {product.stock} in stock
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center -mx-4 ">
                 <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                   <button
-                    onClick={() => handleAddToCart(product._id)}
+                    onClick={() => handleAddToCart(product)}
                     className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
                   >
                     Add To cart

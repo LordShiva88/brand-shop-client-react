@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         ),
         loader: () =>
           fetch(
-            "https://shop-server-site-nw22c7qp6-liton-naths-projects.vercel.app/products"
+            "https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/storedItem"
           ),
       },
       {
@@ -50,9 +50,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://shop-server-site-nw22c7qp6-liton-naths-projects.vercel.app/details/${params.id}`
-          ),
+          fetch(`https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/details/${params.id}`),
       },
       {
         path: "/login",
@@ -70,9 +68,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://shop-server-site-nw22c7qp6-liton-naths-projects.vercel.app/details/${params.id}`
-          ),
+          fetch(`https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/details/${params.id}`),
       },
       {
         path: "/products/:id",

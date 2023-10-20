@@ -2,30 +2,9 @@ import { AiOutlineDelete } from "react-icons/ai";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 
-const Cart = ({ item, setLs }) => {
+const Cart = ({ item, cartItems, setCartItems }) => {
   const { name, image, brand, price, title, _id } = item;
 
-  const removeFromCart = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const lsItem = JSON.parse(localStorage.getItem("cart")) || [];
-        const updateCart = lsItem.filter((item) => item !== id);
-        console.log(updateCart);
-        localStorage.setItem("cart", JSON.stringify(updateCart));
-        setLs(updateCart);
-
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
-      }
-    });
-  };
 
 
   // Delete Data form Mongo Bd
@@ -41,14 +20,14 @@ const Cart = ({ item, setLs }) => {
   //     confirmButtonText: "Yes, delete it!",
   //   }).then((result) => {
   //     if (result.isConfirmed) {
-  //       fetch(`http://localhost:5000/storedItem/${id}`, {
+  //       fetch(`https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/storedItem/${id}`, {
   //         method: "Delete",
   //       })
   //         .then((res) => res.json())
   //         .then((data) => {
   //           console.log(data);
-  //           const remaining = items.filter((item) => item._id !== id);
-  //           setItem(remaining);
+  //           const remaining = cartItems.filter((item) => item._id !== id);
+  //           setCartItems(remaining);
   //           if (data.deletedCount > 0) {
   //             Swal.fire("Deleted!", "Your file has been deleted.", "success");
   //           }
@@ -56,6 +35,19 @@ const Cart = ({ item, setLs }) => {
   //     }
   //   });
   // };
+
+  
+
+
+
+  const handleDelete = (id) => {
+    fetch(`https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/delete/${id}`, {
+      method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+  };
 
   return (
     <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
@@ -82,7 +74,7 @@ const Cart = ({ item, setLs }) => {
           </div>
           <div className="flex items-center space-x-4">
             <p className="text-sm">{price} $</p>
-            <button onClick={() => removeFromCart(_id)}>
+            <button onClick={() => handleDelete(_id)}>
               <AiOutlineDelete className="hover:text-red-500 text-2xl"></AiOutlineDelete>
             </button>
           </div>
@@ -94,6 +86,7 @@ const Cart = ({ item, setLs }) => {
 
 Cart.propTypes = {
   item: PropTypes.object,
-  setLs: PropTypes.func,
+  setCartItems: PropTypes.func,
+  cartItems: PropTypes.array
 };
 export default Cart;
