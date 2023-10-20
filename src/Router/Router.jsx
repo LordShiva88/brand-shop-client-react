@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () => fetch("https://shop-server-site-nw22c7qp6-liton-naths-projects.vercel.app/products"),
       },
       {
         path: "/update/:id",
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
           <Update></Update>
         </PrivateRoute>,
         loader: ({ params }) => 
-          fetch(`http://localhost:5000/details/${params.id}`),
+          fetch(`https://shop-server-site-nw22c7qp6-liton-naths-projects.vercel.app/details/${params.id}`),
       },
       {
         path: "/login",
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/details/${params.id}`),
+          fetch(`https://shop-server-site-nw22c7qp6-liton-naths-projects.vercel.app/details/${params.id}`),
       },
       {
         path: "/products/:id",

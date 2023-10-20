@@ -1,6 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Banner1 from "../../Components/Banner/Banner1";
-import Banner2 from "../../Components/Banner/Banner2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
