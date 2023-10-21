@@ -5,7 +5,7 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const MyCart = () => {
   const data = useLoaderData();
-  const [cartItems, setCartItems] = useState(data)
+  const [cartItems, setCartItems] = useState(data);
 
   return (
     <div className=" py-20">
@@ -25,10 +25,12 @@ const MyCart = () => {
             </div>
           ) : (
             cartItems.map((item) => (
-              <Cart key={item._id}
-              items={cartItems}
-              setCartItems={setCartItems}
-               item={item}></Cart>
+              <Cart
+                key={item._id}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+                item={item}
+              ></Cart>
             ))
           )}
         </div>

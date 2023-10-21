@@ -17,7 +17,11 @@ const Details = () => {
     .then(res => res.json())
     .then(data => {
       console.log(data)
-      toast.success('Added Successfully')
+      if(data.insertedId){
+        toast.success('Add Cart Successful')
+      }else{
+        toast.error('Item Already Added');
+      }
     })
   }
 

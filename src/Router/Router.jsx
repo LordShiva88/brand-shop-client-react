@@ -50,7 +50,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/details/${params.id}`),
+          fetch(
+            `https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/details/${params.id}`
+          ),
       },
       {
         path: "/login",
@@ -68,7 +70,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/details/${params.id}`),
+          fetch(
+            `https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/details/${params.id}`
+          ),
       },
       {
         path: "/products/:id",

@@ -35,13 +35,16 @@ const Update = () => {
     };
     console.log(updateProduct);
 
-    fetch(`https://shop-server-site-nw22c7qp6-liton-naths-projects.vercel.app/products/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updateProduct),
-    })
+    fetch(
+      `https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/products/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateProduct),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

@@ -5,48 +5,35 @@ import Swal from "sweetalert2";
 const Cart = ({ item, cartItems, setCartItems }) => {
   const { name, image, brand, price, title, _id } = item;
 
-
-
   // Delete Data form Mongo Bd
-  // const handleDelete = (id) => {
-  //   console.log(id);
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Yes, delete it!",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       fetch(`https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/storedItem/${id}`, {
-  //         method: "Delete",
-  //       })
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           console.log(data);
-  //           const remaining = cartItems.filter((item) => item._id !== id);
-  //           setCartItems(remaining);
-  //           if (data.deletedCount > 0) {
-  //             Swal.fire("Deleted!", "Your file has been deleted.", "success");
-  //           }
-  //         });
-  //     }
-  //   });
-  // };
-
-  
-
-
-
   const handleDelete = (id) => {
-    fetch(`https://shop-server-rjpbtgvy3-liton-naths-projects.vercel.app/delete/${id}`, {
-      method: 'DELETE',
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `https://shop-server-o0guq8vbh-liton-naths-projects.vercel.app/storedItem/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            const remaining = cartItems.filter((item) => item._id !== id);
+            setCartItems(remaining);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+          });
+      }
+    });
   };
 
   return (
@@ -87,6 +74,6 @@ const Cart = ({ item, cartItems, setCartItems }) => {
 Cart.propTypes = {
   item: PropTypes.object,
   setCartItems: PropTypes.func,
-  cartItems: PropTypes.array
+  cartItems: PropTypes.array,
 };
 export default Cart;

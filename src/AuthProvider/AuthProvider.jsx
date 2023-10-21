@@ -13,38 +13,37 @@ import auth from "../Auth/firebase.config";
 export const authContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUsr] = useState(null);
-  const [loading, setLoading]= useState(true)
+  const [loading, setLoading] = useState(true);
 
-  const googleProvider = new GoogleAuthProvider()
+  const googleProvider = new GoogleAuthProvider();
 
-  
   // Create User email and pass
   const createUser = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  
+
   // Login User
   const loginUser = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // Google Login 
-  const socialLogin = ()=>{
-    return signInWithPopup(auth, googleProvider)
-  }
-  
+  // Google Login
+  const socialLogin = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
+
   // Log Out user
   const logOut = () => {
-    setLoading(true)
+    setLoading(true);
     return signOut(auth);
   };
-  
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUsr(user);
-      setLoading(false)
+      setLoading(false);
     });
     return () => {
       unsubscribe();
@@ -57,7 +56,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     user,
     loading,
-    socialLogin
+    socialLogin,
   };
 
   return (
